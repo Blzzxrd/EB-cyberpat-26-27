@@ -1,0 +1,1 @@
+this will be stuff like ports, connections, firewall etc.

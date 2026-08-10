@@ -1,0 +1,1 @@
+similar to apps, see what services are enabled, running etc.
