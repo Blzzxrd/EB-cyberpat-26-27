@@ -2,3 +2,5 @@ run ALL scripts as sudo, as otherwise they will NOT work!
 run audit.sh first, then based off of results and CP README, run more specific scripts
 
 whenever you run a script, and make a change, check your points! if you lose points, undo the change immediately, and reconsult the CP README.
+
+ALSO, MOST SCRIPTS WILL HAVE HUGE OUTPUTS!!! DIRECT THEM INTO A FILE, THEN GREP THROUGH IT!!!!!
