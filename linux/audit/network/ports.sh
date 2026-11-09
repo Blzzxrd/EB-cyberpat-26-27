@@ -3,21 +3,31 @@ if [ "$EUID" -ne 0 ]; then
   exit 1
 fi
 
-if ! command -v ufw &> /dev/null; then
-    echo "[!] UFW is NOT installed. Please run firewall.sh first"
-    exit 1
+if ! command -v fuser &> /dev/null; then
+    echo "[!] fuser is NOT installed. Installing it now..."
+    sudo apt-get update -y && sudo apt-get install psmisc -y
 else
-    echo "[+] UFW is installed."
+    echo "[+] fuser is installed."
+fi
+
+if ! command -v lsof &> /dev/null; then
+    echo "[!] lsof is NOT installed. Installing it now..."
+    sudo apt-get update -y && sudo apt-get install lsof -y
+else
+    echo "[+] lsof is installed."
 fi
 
 echo "[+] showing listening tcp and udp sockets"
-ss -tulnp
+sudo ss -tulpn
 
-echo "[+] showing open network ports listening for connections"
+echo "[+] showing network ports listening for connections"
 sudo lsof -i -P -n | grep LISTEN
 
-echo "[+] if evil folk process is running:"
-echo "sudo systemctl stop <service_name>"
-echo "sudo systemctl disable <service_name>"
-echo "sudo kill -9 <PID>"
+echo "[+] Look for unauthorized services (like a web server, FTP, or game/chat daemons) bound to 0.0.0.0 (all interfaces) instead of 127.0.0.1 (localhost)."
+echo "[+] also look for unknown ports or high ports mapped to a shell (like bash) or unverified binary"
+
+echo "[+] if evil folk connection:"
 echo "sudo fuser -k <port_number>/tcp"
+echo "sudo fuser -k <port_number>/udp"
+
+echo "[+] you may have to check sudo ps axjf | grep <PID> to see what binary is running on that port and kill it with sudo kill -9 <PID>"
