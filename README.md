@@ -1,15 +1,23 @@
-# CyberPatriot Windows Read-Only Audit Toolkit
+# CyberPatriot Scripts
 
-This project is a defensive auditing assistant for an authorized Windows CyberPatriot competition image. It collects evidence and creates organized reports; it does not secure the computer automatically.
+The Windows audit script is a defensive auditing assistant for an authorized Windows CyberPatriot competition image. It collects evidence and creates organized reports; it does not secure the computer automatically.
+
+The separate `windows/server-2019/` folder contains the Windows 10/Server 2019 script bundle from [AwSkies/CPWindowsScripts](https://github.com/AwSkies/CPWindowsScripts), copied from commit `52db50457d21d1d7c8ddf121bc0a42fb0bc3457e`. It includes the supporting files needed by `secure.bat`. Unlike the audit script, `secure.bat` changes system settings and can disable services, delete accounts, and delete media files. Read its [usage guide](windows/server-2019/README.md) and [license](windows/server-2019/LICENSE.md), including the competition-use restriction, before using it. Check which services and accounts the server must keep before running it.
 
 Read the competition README before running the audit, and compare every result with that README before making a manual change.
 
 ## Project structure
 
 ```text
-Cyberpatriot/
-|-- CyberPatriot-Windows-Audit.ps1   Main self-contained PowerShell 5.1 script
-`-- README.md                        Safety, usage, report, workflow, and test guide
+windows/
+|-- CyberPatriot-Windows-Audit.ps1   Self-contained PowerShell 5.1 audit script
+`-- server-2019/                     Third-party Windows 10/Server 2019 script bundle
+    |-- secure.bat                   Main script
+    |-- admins.bat, GetLocalUsers.vbs, admins.txt, authorizedusers.txt
+    |-- LGPO.exe, Policies/          Policy import dependencies
+    `-- README.md, LICENSE.md        Upstream documentation and license
+linux/                              Linux audit scripts
+README.md                           Audit safety, usage, report, workflow, and test guide
 ```
 
 The script contains one function for each required audit module plus shared reporting and safety helpers. It has no external module, package, or Internet dependency.
