@@ -1,0 +1,30 @@
+{
+  "AuthorizedLocalUsers": ["ExampleUser"],
+  "ExpectedAdmins": [],
+  "RequiredServices": [],
+  "RequiredShares": ["ExampleShare"],
+  "ProhibitedServices": ["ExampleService"],
+  "RequiredApplications": [],
+  "RequiredGroups": {"ExampleGroup": ["ExampleUser"]},
+  "RequiredApplicationDetails": [
+    {"Name": "Example Browser", "MinimumVersion": "1.0", "InstallPathContains": "Program Files"}
+  ],
+  "PolicyTargets": {
+    "MinimumPasswordLength": {"Minimum": 14},
+    "PasswordComplexity": {"Equals": 1},
+    "ClearTextPassword": {"Equals": 0},
+    "LockoutBadCount": {"Maximum": 5}
+  },
+  "AuditSubcategoryTargets": [
+    {"Name": "Credential Validation", "RequireSuccess": true, "RequireFailure": true},
+    {"Name": "Logon", "RequireSuccess": true, "RequireFailure": true}
+  ],
+  "UserRightMustInclude": {
+    "SeDenyNetworkLogonRight": ["S-1-5-32-546"]
+  },
+  "RegistryPolicyTargets": [
+    {"Path": "HKLM:\\SYSTEM\\CurrentControlSet\\Control\\Lsa", "Name": "LimitBlankPasswordUse", "Equals": 1},
+    {"Path": "HKLM:\\SYSTEM\\CurrentControlSet\\Control\\Lsa", "Name": "RestrictAnonymousSAM", "Equals": 1}
+  ],
+  "SearchFolders": []
+}

@@ -4,6 +4,8 @@ The Windows audit script is a defensive auditing assistant for an authorized Win
 
 The separate `windows/server-2019/` folder contains the Windows 10/Server 2019 script bundle from [AwSkies/CPWindowsScripts](https://github.com/AwSkies/CPWindowsScripts), copied from commit `52db50457d21d1d7c8ddf121bc0a42fb0bc3457e`. It includes the supporting files needed by `secure.bat`. Unlike the audit script, `secure.bat` changes system settings and can disable services, delete accounts, and delete media files. Read its [usage guide](windows/server-2019/README.md) and [license](windows/server-2019/LICENSE.md), including the competition-use restriction, before using it. Check which services and accounts the server must keep before running it.
 
+The `windows/new scripts windows 11/` folder contains the files from `Windows-Security-Training-Toolkit-Refactored.zip`. Its [README](windows/new%20scripts%20windows%2011/README.md) describes a separate modular audit toolkit for Windows 10/11 and Windows Server 2019/2022 practice VMs. The files are included with their original `docs/`, `modules/`, `tests/`, and `third_party/` layout.
+
 Read the competition README before running the audit, and compare every result with that README before making a manual change.
 
 ## Project structure
@@ -11,11 +13,15 @@ Read the competition README before running the audit, and compare every result w
 ```text
 windows/
 |-- CyberPatriot-Windows-Audit.ps1   Self-contained PowerShell 5.1 audit script
-`-- server-2019/                     Third-party Windows 10/Server 2019 script bundle
-    |-- secure.bat                   Main script
-    |-- admins.bat, GetLocalUsers.vbs, admins.txt, authorizedusers.txt
-    |-- LGPO.exe, Policies/          Policy import dependencies
-    `-- README.md, LICENSE.md        Upstream documentation and license
+|-- server-2019/                     Third-party Windows 10/Server 2019 script bundle
+|   |-- secure.bat                   Main script
+|   |-- admins.bat, GetLocalUsers.vbs, admins.txt, authorizedusers.txt
+|   |-- LGPO.exe, Policies/          Policy import dependencies
+|   `-- README.md, LICENSE.md        Upstream documentation and license
+`-- new scripts windows 11/          Modular training audit toolkit from the ZIP
+    |-- Start-Audit.ps1              Main launcher
+    |-- modules/, docs/, tests/, third_party/
+    `-- README.md, config.*.json
 linux/                              Linux audit scripts
 README.md                           Audit safety, usage, report, workflow, and test guide
 ```
